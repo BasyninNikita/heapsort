@@ -11,43 +11,44 @@ void vyvod(int *array,unsigned int size)
 }
 bool vvod(int *array,unsigned int size)
 {
-    string stroka;
-    getline(cin,stroka);	
-    istringstream stream(stroka);
-    for(unsigned int i=0;i<size;i++)
-    {
-        if(!(stream>>array[i])){
-            cout<<"nepolnuy massiv";
-            return false;
-        }   	
-    }
-    return true;
+	string stroka;
+	getline(cin,stroka);	
+	istringstream stream(stroka);
+	for(unsigned int i=0;i<size;i++)
+        {
+        	if(!(stream>>array[i]))
+		{
+        		cout<<"nepolnuy massiv";
+        		return false;
+        	}   	
+    	}
+    	return true;
 } 
 void piramida(int *array,int k,int size){
-int a;
-  int x;
-  a = array[k];
-  while(k <= size/2) {  		
-    x = 2*k;
-    if( x < size && array[x] < array[x+1] ) 
-    x++;
-    if( a >= array[x] ) break;
-    array[k] = array[x]; 	
-    k = x;
-  }
-  array[k] = a;
+	int fath;
+	int son;
+  	fath = array[k];
+  	while(k <= size/2) {  		
+    		son = 2*k;
+    		if( son < size && array[son] < array[son+1] ) 
+    		son++;
+    		if( fath >= array[son] ) break;
+    		array[k] = array[son]; 	
+    		k = son;
+  	}
+  	array[k] = fath;
 }
 void heapsort(int * array,int size)
 {
-for(int i=(size/2)-1;i>=0;i--)	{
+	for(int i=(size/2)-1;i>=0;i--)	{
 		piramida(array,i,size-1);
 	}
-		for(int i=size-1;i>=0;i--)
-		{
-			swap(array[0],array[i]);
-			piramida(array,0,i-1);
-		}
+	for(int i=size-1;i>=0;i--)
+	{
+		swap(array[0],array[i]);
+		piramida(array,0,i-1);
 	}
+}
 int main(int argc, char** argv) {
 	unsigned int size;
 	string stroka;
